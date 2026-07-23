@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClientPulse QA - Executive Testing & Assurance Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">⚡</div>
+                <div class="brand-text">
+                    <h2>ClientPulse QA</h2>
+                    <span class="badge">PRO ENTERPRISE</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#overview" class="nav-item active">
+                    <span class="icon">📊</span> Executive Overview
+                </a>
+                <a href="#test-cases" class="nav-item">
+                    <span class="icon">🧪</span> Test Suites & Cases
+                </a>
+                <a href="#ci-cd" class="nav-item">
+                    <span class="icon">⚙️</span> Jenkins CI/CD Status
+                </a>
+                <a href="/api/report/html" target="_blank" class="nav-item highlight">
+                    <span class="icon">📄</span> Export HTML Report
+                </a>
+            </nav>
+
+            <div class="client-card">
+                <div class="client-label">PREPARED FOR CLIENT</div>
+                <div class="client-name" id="clientName">Acme Corp Enterprise</div>
+                <div class="client-system" id="clientSystem">E-Commerce & Payment API</div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-bar">
+                <div>
+                    <h1 class="page-title">Executive Assurance Dashboard</h1>
+                    <p class="page-subtitle">Real-time Quality Assurance, Automated Test Health & Jenkins Pipeline Status</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="exportReport()">
+                        <span>📥</span> Export Audit Report
+                    </button>
+                    <button class="btn btn-primary" onclick="triggerTests()" id="runBtn">
+                        <span>▶</span> Trigger Test Suite
+                    </button>
+                </div>
+            </header>
+
+            <!-- Metrics Grid -->
+            <section class="metrics-grid">
+                <div class="metric-card glass">
+                    <div class="metric-header">
+                        <span class="metric-title">OVERALL PASS RATE</span>
+                        <span class="metric-badge green" id="healthBadge">OPTIMAL</span>
+                    </div>
+                    <div class="metric-value green" id="passRateVal">91.6%</div>
+                    <div class="metric-sub text-muted">Target SLA: 90.0% Minimum</div>
+                </div>
+
+                <div class="metric-card glass">
+                    <div class="metric-header">
+                        <span class="metric-title">TOTAL TEST SUITES</span>
+                        <span class="metric-icon">🧪</span>
+                    </div>
+                    <div class="metric-value" id="totalTestsVal">12</div>
+                    <div class="metric-sub text-muted"><span id="passCount" class="text-green">11 Passed</span> &bull; <span id="failCount" class="text-red">1 Failed</span></div>
+                </div>
+
+                <div class="metric-card glass">
+                    <div class="metric-header">
+                        <span class="metric-title">AVG RESPONSE LATENCY</span>
+                        <span class="metric-icon">⚡</span>
+                    </div>
+                    <div class="metric-value blue" id="latencyVal">142ms</div>
+                    <div class="metric-sub text-muted">Max Threshold: 300ms</div>
+                </div>
+
+                <div class="metric-card glass">
+                    <div class="metric-header">
+                        <span class="metric-title">JENKINS CI/CD BUILD</span>
+                        <span class="metric-badge blue">AUTOMATED</span>
+                    </div>
+                    <div class="metric-value text-green" style="font-size: 1.5rem; margin-top: 10px;">SUCCESS #2</div>
+                    <div class="metric-sub text-muted" id="lastRunTime">Last Run: Just Now</div>
+                </div>
+            </section>
+
+            <!-- Test Cases Table -->
+            <section class="table-section glass">
+                <div class="section-header">
+                    <h3>Automated Test Execution Results</h3>
+                    <div class="filter-group">
+                        <button class="filter-btn active" onclick="filterTests('ALL')">All (12)</button>
+                        <button class="filter-btn" onclick="filterTests('PASSED')">Passed</button>
+                        <button class="filter-btn" onclick="filterTests('FAILED')">Failed</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Test ID</th>
+                                <th>Test Name</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Latency</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="testTableBody">
+                            <!-- Dynamic test rows populated by app.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
