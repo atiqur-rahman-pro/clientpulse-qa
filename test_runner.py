@@ -1,10 +1,9 @@
 import os
 import time
 import json
-import pytest
 from datetime import datetime
 
-class TestEngine:
+class QAExecutionEngine:
     def __init__(self):
         self.last_run_time = None
         self.latest_summary = {
@@ -70,13 +69,7 @@ class TestEngine:
     def run_tests(self):
         """Simulates/Runs test suite and calculates updated metrics."""
         self.last_run_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        
-        # Run pytest programmatically if test directory exists
-        test_dir = os.path.join(os.path.dirname(__file__), "tests")
-        if os.path.exists(test_dir):
-            pytest.main(["-q", test_dir])
-            
         self.latest_summary["last_executed"] = self.last_run_time
         return self.latest_summary
 
-test_engine = TestEngine()
+test_engine = QAExecutionEngine()
